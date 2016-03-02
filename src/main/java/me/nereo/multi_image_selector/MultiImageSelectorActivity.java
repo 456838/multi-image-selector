@@ -43,6 +43,9 @@ public class MultiImageSelectorActivity extends FragmentActivity implements Mult
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //初始图形框架
+        FrescoImageLoader.Init(getApplicationContext());
         setContentView(R.layout.activity_default);
 
         Intent intent = getIntent();
@@ -84,7 +87,7 @@ public class MultiImageSelectorActivity extends FragmentActivity implements Mult
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(resultList != null && resultList.size() >0){
+                if (resultList != null && resultList.size() > 0) {
                     // 返回已选择的图片数据
                     Intent data = new Intent();
                     data.putStringArrayListExtra(EXTRA_RESULT, resultList);
@@ -93,8 +96,6 @@ public class MultiImageSelectorActivity extends FragmentActivity implements Mult
                 }
             }
         });
-        //初始图形框架
-        FrescoImageLoader.Init(getApplicationContext());
     }
 
     private void updateDoneText(){

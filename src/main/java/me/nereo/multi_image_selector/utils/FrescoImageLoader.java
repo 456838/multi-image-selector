@@ -72,7 +72,7 @@ public class FrescoImageLoader {
 //                .setRoundingParams(RoundingParams.asCircle());
 //        p_SimpleDraweeView.setHierarchy(_builder.build());
         DraweeController _controller = Fresco.newDraweeControllerBuilder()
-                .setAutoPlayAnimations(true)
+//                .setAutoPlayAnimations(true)
                 .setLowResImageRequest(ImageRequest.fromUri(p_Url))
                 .setImageRequest(ImageRequest.fromUri(p_Url))
                 .setUri(p_Url)
@@ -81,23 +81,37 @@ public class FrescoImageLoader {
         p_DraweeView.setController(_controller);
     }
 
-    public static void displayLocalInCenterInside(Context p_Context, DraweeView p_DraweeView, String p_LocalFilePath) {
-        GenericDraweeHierarchyBuilder _builder = new GenericDraweeHierarchyBuilder(p_Context.getResources());
-        _builder
-                .setActualImageScaleType(ScalingUtils.ScaleType.FIT_CENTER)
-                .setFadeDuration(1000);
-//                .setProgressBarImage(new ProgressBarDrawable())
-//                .setRoundingParams(RoundingParams.asCircle());
-//        p_SimpleDraweeView.setHierarchy(_builder.build());
-        DraweeController _controller = Fresco.newDraweeControllerBuilder()
-                .setAutoPlayAnimations(true)
-                .setLowResImageRequest(ImageRequest.fromUri(Uri.parse("file://"+p_LocalFilePath)))
-//                .setImageRequest(ImageRequest.fromUri(p_LocalFilePath))
-//                .setUri(Uri.fromFile(new File(p_LocalFilePath)))
-                .setOldController(p_DraweeView.getController())
+    public static void displayLocalThumbnailImage(DraweeView p_DraweeView, String p_LocalFilePath, int p_NewWidth, int p_NewHeight) {
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse("file:///" + p_LocalFilePath))
+                .setResizeOptions(new ResizeOptions(p_NewWidth, p_NewHeight))
                 .build();
-        p_DraweeView.setController(_controller);
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setOldController(p_DraweeView.getController())
+                .setImageRequest(request)
+                .setAutoPlayAnimations(true)
+                .build();
+        p_DraweeView.setController(controller);
     }
+
+//    public static void displayLocalInCenterInside(Context p_Context, DraweeView p_DraweeView, String p_LocalFilePath) {
+//        DraweeController controller =Fresco.newDraweeControllerBuilder().
+//        p_DraweeView.setController(controller);
+//        GenericDraweeHierarchyBuilder _builder = new GenericDraweeHierarchyBuilder(p_Context.getResources());
+//        _builder
+//                .setActualImageScaleType(ScalingUtils.ScaleType.FIT_CENTER)
+//                .setFadeDuration(1000);
+////                .setProgressBarImage(new ProgressBarDrawable())
+////                .setRoundingParams(RoundingParams.asCircle());
+////        p_SimpleDraweeView.setHierarchy(_builder.build());
+//        DraweeController _controller = Fresco.newDraweeControllerBuilder()
+//              //  .setAutoPlayAnimations(true)
+//                .setLowResImageRequest(ImageRequest.fromUri(Uri.parse("file://"+p_LocalFilePath)))
+////                .setImageRequest(ImageRequest.fromUri(p_LocalFilePath))
+////                .setUri(Uri.fromFile(new File(p_LocalFilePath)))
+//                .setOldController(p_DraweeView.getController())
+//                .build();
+//        p_DraweeView.setController(_controller);
+//    }
 
     /**
      * 初始化配置

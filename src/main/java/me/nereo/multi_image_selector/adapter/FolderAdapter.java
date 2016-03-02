@@ -85,7 +85,7 @@ public class FolderAdapter extends BaseAdapter {
                         getTotalImageSize(), mContext.getResources().getString(R.string.photo_unit)));
                 if(mFolders.size()>0){
                     Folder f = mFolders.get(0);
-                    FrescoImageLoader.displayLocalInCenterInside(mContext, holder.cover, f.cover.path);
+                    FrescoImageLoader.displayLocalThumbnailImage(holder.cover, f.cover.path, mImageSize, mImageSize);
 //
 //                    Picasso.with(mContext)
 //                            .load(new File(f.cover.path))
@@ -155,7 +155,7 @@ public class FolderAdapter extends BaseAdapter {
             }
             // 显示图片
             if (data.cover != null) {
-                FrescoImageLoader.displayLocalInCenterInside(mContext, cover, data.cover.path);
+                FrescoImageLoader.displayLocalThumbnailImage(cover, data.cover.path, mImageSize, mImageSize);
 //                Picasso.with(mContext)
 //                        .load(new File(data.cover.path))
 //                        .placeholder(R.drawable.default_error)

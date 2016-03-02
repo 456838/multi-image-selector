@@ -186,7 +186,6 @@ public class ImageGridAdapter extends BaseAdapter {
         if(holder != null) {
             holder.bindData(getItem(i));
         }
-
         return view;
     }
 
@@ -222,7 +221,8 @@ public class ImageGridAdapter extends BaseAdapter {
             File imageFile = new File(data.path);
             if (imageFile.exists()) {
                 Log.e("aa",data.path);
-                FrescoImageLoader.displayLocalInCenterInside(mContext,image,data.path);
+
+                FrescoImageLoader.displayLocalThumbnailImage(image, data.path, mGridWidth, mGridWidth);
 //                // 显示图片
 //                Picasso.with(mContext)
 //                        .load(imageFile)

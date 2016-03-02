@@ -5,18 +5,21 @@ import android.util.AttributeSet;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
-/** An image view which always remains square with respect to its width. */
+/**
+ * An image view which always remains square with respect to its width.
+ */
 public class SquaredImageView extends SimpleDraweeView {
-  public SquaredImageView(Context context) {
-    super(context);
-  }
+    public SquaredImageView(Context context) {
+        super(context);
+    }
 
-  public SquaredImageView(Context context, AttributeSet attrs) {
-    super(context, attrs);
-  }
+    public SquaredImageView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-  @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
-  }
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
+    }
 }
